@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookStore</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .search-bar {
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      padding: 40px 0;
+    }
+    /* body{background-color: rgb(8, 71, 22);} */
+    .search-bar input {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 20px;
+    }
+
+    .book-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .footer {
+      background: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="bg-light py-3">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(8, 71, 22);">
+        <a class="navbar-brand" href="#" style="color: bisque;">BookStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#" style="color: bisque;">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" style="color: bisque;">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" style="color: bisque;">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" style="color: bisque;">Shop</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="search-section text-center py-5">
+    <div class="container">
+      <h1 class="mb-4" style="color:rgb(58, 58, 9)">
+        Find the book <br /><strong>you've been looking for</strong>
+      </h1>
+      <form class="form-inline justify-content-center">
+        <input
+          class="form-control form-control-lg mr-2"
+          type="search"
+          placeholder="Search by book title"
+          aria-label="Search"
+          style="font-size:15px;box-shadow: 0px 0px 10px rgb(8, 71, 22);"
+        />
+        <button class="btn btn-lg" type="submit" style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="container form-container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 ">
+        <div class="card" style="padding:20px;border:0;background-color: rgba(8, 71, 22, 0.963);box-shadow:inset 0px 0px 10px yellow;border-radius: 10px;">
+          
+          <div class="card-body">
+            <form action="" method="post">
+              <div class="form-group row">
+                <label for="url" class="col-sm-3 col-form-label" style="color: bisque;">URL</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="url" name="url" placeholder="Enter book image URL">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="title" class="col-sm-3 col-form-label"style="color: bisque;">Title</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="title" name="title" placeholder="Enter book title">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="author" class="col-sm-3 col-form-label"style="color: bisque;">Author</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="author" name="author" placeholder="Enter book author">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="summary" class="col-sm-3 col-form-label"style="color: bisque;">Summary</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="summary" name="summary" rows="3"
+                    placeholder="Enter book summary"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="price" class="col-sm-3 col-form-label"style="color: bisque;">Price</label>
+                <div class="col-sm-9">
+                  <input type="number" class="form-control" id="price" name="price" placeholder="Enter book price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-9 offset-sm-3">
+                  <button type="submit" class="" style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;padding: 10px 30px;border-radius: 7px;">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container my-5">
+    <div class="row">
+      <% bookstore.map(book=> {
+        <!-- let {url,title,author,summary,price,} = book -->
+        %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card book-card p-4"style="background-color: rgba(8, 71, 22, 0.963);;color:bisque;box-shadow:inset 0px 0px 10px yellow;border:0;border-radius:7px;">
+            <img src="<%= book.url %>" class="card-img-top" alt="<%= book.title %>">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= book.title %>
+              </h5>
+              <p class="card-text">
+                <%= book.author %><br>
+                  <%= book.summary.substring(0, 100) %>...
+              </p>
+              <button class="btn btn-secondary" data-toggle="modal" data-target="#bookModal"
+                data-title="<%= book.title %>" data-author="<%= book.author %>" data-summary="<%= book.summary %>"style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;padding: 10px 30px;border-radius: 7px;">More
+                Details</button>
+              <a href="#" class="btn"style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;padding: 10px 30px;border-radius: 7px;"color: white;">Buy for <%= book.price.displayValue %>
+                  <%= book.price.currency %></a>
+            </div>
+            <div class="mt-3 mb-3 ml-4">
+              <a href="/deleteData?id=<%=book._id%>" class="btn" style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;padding: 10px 30px;border-radius: 7px;color: white;">Delete</a>
+              <a href="/editData?id=<%=book._id%>" class="btn btn-secondary"style="color: bisque;font-size:15px;box-shadow:inset 0px 0px 10px rgb(208, 223, 38);background-color:rgb(8, 71, 22);border:0;padding: 10px 30px;border-radius: 7px;">Edit</a>
+          </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookModalLabel">Book Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 id="modalTitle"></h5>
+          <p><strong>Author: </strong><span id="modalAuthor"></span></p>
+          <p id="modalSummary"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $('#bookModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var title = button.data('title');
+      var author = button.data('author');
+      var summary = button.data('summary');
+
+      var modal = $(this);
+      modal.find('.modal-title').text(title);
+      modal.find('#modalTitle').text(title);
+      modal.find('#modalAuthor').text(author);
+      modal.find('#modalSummary').text(summary);
+    });
+  </script>
+</body>
+
+</html>
